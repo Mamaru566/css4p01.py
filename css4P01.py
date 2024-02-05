@@ -83,8 +83,9 @@ print(most_common_actor)
 unique_genres = set(df['Genre'].str.split(', ').explode())
 
 # Count the number of unique genres
-num_unique_genres = len(unique_genres)
-print(num_unique_genres)
+uniquegeneres = df["Genre"].str.split(",", expand=True)
+df_genere = pd.concat([uniquegeneres[0], uniquegeneres[1], uniquegeneres[2]], axis=0, ignore_index=True)
+print(len(df_genere.value_counts()))
 
 # Convert the "Revenue (Millions)" column to numeric, replacing non-numeric values with NaN
 correlation = df.drop(columns=["Title", "Genre", "Description", "Director", "Actors" ]).corr()
